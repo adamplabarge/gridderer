@@ -19,7 +19,10 @@ Todos:
 - [] Type it!
 - [] Fix tests
 - [] Write unit test
-- [] How can this be integrated into a form, how can it be styled?
+- [] How can this be integrated into a form?
+- [] How can load single low res but then high-res grid sections zoom on hover?
+- [] How can it be styled?
+- [] How can input, image view, zoom view, all work together?
 - [] Currently converts DataImage back to Base64. What about other options?
 - [] Pie in the sky, how can we let users free hand draw shapes to grid out?
 - [] Github Actions to release to NPM
