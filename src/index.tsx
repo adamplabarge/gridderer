@@ -1,7 +1,7 @@
 // @ts-nocheck
 import React, { useRef, useState, useEffect } from 'react'
 
-import { getTiles, MAGIC_NUMBER } from './utils'
+import { getTiles, MAGIC_NUMBER, imagedataToImage } from './utils'
 
 const OFFEST = 1.1
 
@@ -16,7 +16,21 @@ export const Gridderer = ({
 }: Props) => {
 
   const canvasRef = useRef(null)
+  
+  const [tiles, setTiles] = useState([])
+  let data = []
 
+  useEffect(() => {
+    if (tiles.length) {
+      const canvas = canvasRef.current
+      const context = canvas.getContext('2d')
+
+      tiles.forEach(d => {
+        data.push(imagedataToImage(d))
+        context.putImageData(d, d.x * OFFEST, d.y * OFFEST)
+      })
+    }
+  }, [tiles])
 
   const processImage = (image) => {
     const canvas = canvasRef.current
@@ -32,8 +46,8 @@ export const Gridderer = ({
 
     const tileDim = ~~(image.width / tilesCountX) 
     const tiles = getTiles(tilesCountX, tilesCountY, imageData, tileDim, image.width)
-  
-    tiles.forEach((d,i) => context.putImageData(d, d.x * OFFEST, d.y * OFFEST))
+    
+    setTiles(tiles)
   }
 
   const handleOnChange = (e) => {
@@ -55,7 +69,6 @@ export const Gridderer = ({
   return <>
     <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
       <input name="upload" type="file" onChange={handleOnChange} />
-      <button type="submit" onClick={handleOnSubmit}>Upload</button>
     </div>
     <canvas ref={canvasRef} />
   </>

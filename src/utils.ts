@@ -50,3 +50,14 @@ export function getTiles(tileCountX, tileCountY, imgData, tileDim, imgW) {
   }
   return tiles
 }
+
+export function imagedataToImage(imagedata) {
+  var canvas = document.createElement('canvas')
+  var ctx = canvas.getContext('2d')
+  canvas.width = imagedata.width
+  canvas.height = imagedata.height
+  ctx.putImageData(imagedata, 0, 0)
+
+  var image = new Image()
+  return canvas.toDataURL()
+}
