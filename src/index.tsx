@@ -3,16 +3,18 @@ import React, { useRef, useState, useEffect } from 'react'
 
 import { getTiles, MAGIC_NUMBER, imagedataToImage } from './utils'
 
-const OFFEST = 1.1
+const GRID_OFFSET = 1.025
 
 export interface Props  {
   tilesCountX?: number
   tilesCountY?: number
+  gridOffset?: number
 }
 
 export const Gridderer = ({
   tilesCountX = MAGIC_NUMBER,
-  tilesCountY = MAGIC_NUMBER
+  tilesCountY = MAGIC_NUMBER,
+  gridOffset = GRID_OFFSET
 }: Props) => {
 
   const canvasRef = useRef(null)
@@ -27,7 +29,7 @@ export const Gridderer = ({
 
       tiles.forEach(d => {
         data.push(imagedataToImage(d))
-        context.putImageData(d, d.x * OFFEST, d.y * OFFEST)
+        context.putImageData(d, d.x * gridOffset, d.y * gridOffset)
       })
     }
   }, [tiles])
@@ -62,14 +64,10 @@ export const Gridderer = ({
     }
   }
 
-  const handleOnSubmit = () => {
-    console.log(imgSrc)
-  }
-
-  return <>
+  return <div>
     <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
       <input name="upload" type="file" onChange={handleOnChange} />
     </div>
     <canvas ref={canvasRef} />
-  </>
+  </div>
 }
