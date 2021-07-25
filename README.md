@@ -7,7 +7,7 @@
 
 ```javascript
 import React, { useState } from 'react'
-import { Gridderer, ImageViewer } from 'gridderer'
+import { ImageUpload, ImageViewer } from 'gridderer'
 
 ...
 
@@ -18,7 +18,7 @@ const handleCb = ([imageData, zoomImageData]) => setImageData([imageData, zoomIm
 
 ...
 
-<Gridderer
+<ImageUpload
   tilesX={8}
   tilesY={6}
   gridOffset={1.005}
