@@ -9,13 +9,14 @@ export interface iImageUploadProps  {
   tilesCountX?: number
   tilesCountY?: number
   gridOffset?: number
+  onChange?: () => void
 }
 
 export const ImageUpload = ({
   tilesCountX = MAGIC_NUMBER,
   tilesCountY = MAGIC_NUMBER,
   gridOffset = GRID_OFFSET,
-  cb
+  onChange
 }: iImageUploadProps) => {
 
   const canvasRef = useRef(null)
@@ -53,8 +54,8 @@ export const ImageUpload = ({
       img.src = reader.result
       img.onload = () => {
         const base64ImageArray = processImage(img)
-        if (cb)
-          cb(base64ImageArray)
+        if (onChange)
+          onChange(base64ImageArray)
       }
     }
   }

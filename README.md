@@ -14,7 +14,7 @@ import { ImageUpload, ImageViewer } from 'gridderer'
 const [imageData, setImageData] = useState(null)
 const [image, zoomImage] = imageData
 
-const handleCb = ([imageData, zoomImageData]) => setImageData([imageData, zoomImageData])
+const handleOnChange = ([imageData, zoomImageData]) => setImageData([imageData, zoomImageData])
 
 ...
 
@@ -22,7 +22,7 @@ const handleCb = ([imageData, zoomImageData]) => setImageData([imageData, zoomIm
   tilesX={8}
   tilesY={6}
   gridOffset={1.005}
-  cb={handleCb}
+  onChange={handleOnChange}
 />
 
 <ImageViewer
