@@ -12,17 +12,17 @@ import { Gridderer } from 'gridderer'
 ```
 
 ---
-Using Tsdx, React, Storybook
+Using Tsdx, React, Storybook, Styled-Components
 ---
 
 Todos:
 - [] Type it!
 - [] Fix tests
 - [] Write unit test
-- [] How can this be integrated into a form?
-- [] How can load single low res but then high-res grid sections zoom on hover?
-- [] How can it be styled?
-- [] How can input, image view, zoom view, all work together?
+- [x] How can this be integrated into a form? See answer below
+- [x] How can load single low res but then high-res grid sections zoom on hover? A cb into the input should be enough to surface the data which can be saved in state and then passed as prop to ImageViewer. Will need to include grid data.
+- [x] How can it be styled? Styled-Components
+- [x] How can input, image view, zoom view, all work together? See above 'how can load'
 - [] Currently converts DataImage back to Base64. What about other options?
 - [] Pie in the sky, how can we let users free hand draw shapes to grid out?
 - [] Github Actions to release to NPM
