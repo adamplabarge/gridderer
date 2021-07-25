@@ -6,15 +6,15 @@ import { getTiles, MAGIC_NUMBER, imagedataToImage } from './utils'
 const GRID_OFFSET = 1.025
 
 export interface iImageUploadProps  {
-  tilesCountX?: number
-  tilesCountY?: number
+  tilesX?: number
+  tilesY?: number
   gridOffset?: number
   onChange?: () => void
 }
 
 export const ImageUpload = ({
-  tilesCountX = MAGIC_NUMBER,
-  tilesCountY = MAGIC_NUMBER,
+  tilesX = MAGIC_NUMBER,
+  tilesY = MAGIC_NUMBER,
   gridOffset = GRID_OFFSET,
   onChange
 }: iImageUploadProps) => {
@@ -33,8 +33,8 @@ export const ImageUpload = ({
     const imageData = context.getImageData(0, 0, image.width, image.height).data
     context.clearRect(0, 0, image.width, image.height)
 
-    const tileDim = ~~(image.width / tilesCountX) 
-    const tiles = getTiles(tilesCountX, tilesCountY, imageData, tileDim, image.width)
+    const tileDim = ~~(image.width / tilesX) 
+    const tiles = getTiles(tilesX, tilesY, imageData, tileDim, image.width)
     
     const base64ImageArray = []
 
