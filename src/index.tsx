@@ -14,25 +14,11 @@ export interface Props  {
 export const Gridderer = ({
   tilesCountX = MAGIC_NUMBER,
   tilesCountY = MAGIC_NUMBER,
-  gridOffset = GRID_OFFSET
+  gridOffset = GRID_OFFSET,
+  cb
 }: Props) => {
 
   const canvasRef = useRef(null)
-  
-  const [tiles, setTiles] = useState([])
-  let data = []
-
-  useEffect(() => {
-    if (tiles.length) {
-      const canvas = canvasRef.current
-      const context = canvas.getContext('2d')
-
-      tiles.forEach(d => {
-        data.push(imagedataToImage(d))
-        context.putImageData(d, d.x * gridOffset, d.y * gridOffset)
-      })
-    }
-  }, [tiles])
 
   const processImage = (image) => {
     const canvas = canvasRef.current
@@ -49,7 +35,14 @@ export const Gridderer = ({
     const tileDim = ~~(image.width / tilesCountX) 
     const tiles = getTiles(tilesCountX, tilesCountY, imageData, tileDim, image.width)
     
-    setTiles(tiles)
+    const base64ImageArray = []
+
+    tiles.forEach(d => {
+      base64ImageArray.push(imagedataToImage(d))
+      context.putImageData(d, d.x * gridOffset, d.y * gridOffset)
+    })
+
+    return base64ImageArray
   }
 
   const handleOnChange = (e) => {
@@ -59,7 +52,9 @@ export const Gridderer = ({
       const img = new Image()
       img.src = reader.result
       img.onload = () => {
-        processImage(img)
+        const base64ImageArray = processImage(img)
+        if (cb)
+          cb(base64ImageArray)
       }
     }
   }
