@@ -7,15 +7,16 @@ import styles from "./ImageZoom.css";
 export interface iImageZoomProps {
   imageData: any
   zoomImageData: any
-  placement: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' | 'center'
-  width: number
-  height: number
-  zoomWidth: number
-  zoomHeight: number
-  isActive: boolean
-  onZoom: () => void
-  onClose: () => void
-  zoomType: 'click' | 'hover'
+  placement?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' | 'center'
+  width?: number
+  height?: number
+  zoomWidth?: number
+  zoomHeight?: number
+  isActive?: boolean
+  onZoom?: () => void
+  onClose?: () => void
+  zoomType?: 'click' | 'hover'
+  className?: string
 }
 
 const ImageZoom = ({

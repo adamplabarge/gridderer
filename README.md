@@ -6,9 +6,29 @@
 ![Image of Gridderer](./gridderer.png)
 
 ```javascript
-import { Gridderer } from 'gridderer'
+import React, { useState } from 'react'
+import { Gridderer, ImageViewer } from 'gridderer'
 
-<Gridderer tilesCountX={8} tilesCountY={6} gridOffset={1.005} />
+...
+
+const [imageData, setImageData] = useState(null)
+const [image, zoomImage] = imageData
+
+const handleCb = ([imageData, zoomImageData]) => setImageData([imageData, zoomImageData])
+
+...
+
+<Gridderer
+  tilesX={8}
+  tilesY={6}
+  gridOffset={1.005}
+  cb={handleCb}
+/>
+
+<ImageViewer
+  imageData={image}
+  zoomImageData={zoomImage}
+/>
 ```
 
 ---
